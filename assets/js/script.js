@@ -1,18 +1,26 @@
+//selects the html element that contains the timer
 let timer = document.getElementById('count');
+//selects the html header that displays the quiz questions
 let quizQuestion = document.getElementById('mainHeader');
-let choice1 = document.getElementById('choice1')
-let choice2 = document.getElementById('choice2')
-let choice3 = document.getElementById('choice3')
-let choice4 = document.getElementById('choice4')
+//selects the list items the have the answers to the questions in it
+let choice1 = document.getElementById('choice1');
+let choice2 = document.getElementById('choice2');
+let choice3 = document.getElementById('choice3');
+let choice4 = document.getElementById('choice4');
+//assings how much time the timer starts at
 let timeLeft = 75;
-let userans
-let questNum = 0
-let highscoreArr = []
+//creates an empty global variable 
+let userans;
+//assigns what number of question youre on
+let questNum = 0;
+//empty array that will store info to send to local storage 
+let highscoreArr = [];
 let highscore = JSON.parse(localStorage.getItem('highscoreArr'));
+//array of objects with the quiz questions, choices and answer 
 let questions = [
     {
         question: "Whats the proper way to create a varible in javascript?",
-        choices: ["name = 'Josh", "var name = 'Josh'", "createvar name = 'Josh", "'Josh' = name"], 
+        choices: ["name = 'Josh'", "var name = 'Josh'", "createvar name = 'Josh'", "'Josh' = name"], 
         answer: 2
     },
     {
@@ -41,6 +49,7 @@ let questions = [
     },
 ]
 
+//displays the questoin and choices when called based on what question number your on 
 function displayQuestion () {
     quizQuestion.innerHTML = questions[questNum].question
     choice1.innerHTML = questions[questNum].choices[0]
@@ -49,16 +58,16 @@ function displayQuestion () {
     choice4.innerHTML = questions[questNum].choices[3]
 };
 
+//checks if the answer is correct if its not correct subtracts 15 seconds off the time
 function checkAns() {
     if(userans == questions[questNum].answer) {
-        console.log('change to next question')
+        return;
     } else {
         timeLeft = timeLeft - 15
-        console.log('wrong')
     }
 };
    
-
+//starts the counts down when called and stops the timer and the quiz when it hits 0
 function countdown () {
     timeInterval = setInterval(function () {
         timeLeft--;
@@ -72,13 +81,16 @@ function countdown () {
     },1000);
 };
 
+//stops the quiz and asks the user to enter initials and show them their score
 function stopQuiz() {
     let score = timeLeft
     let initials = prompt(`Your score was ${timeLeft}! Please enter your initials.`)
+    //stores users score and initals in object
     let results = {
         initials: initials,
         score: score
     };
+    //saves object into an array then saves to local storage
     if(highscore === null) {
         highscoreArr = highscoreArr.concat(results);
         localStorage.setItem('highscoreArr', JSON.stringify(highscoreArr));
@@ -87,24 +99,31 @@ function stopQuiz() {
         highscoreArr = highscoreArr.concat(results);
         localStorage.setItem('highscoreArr', JSON.stringify(highscoreArr));
     };
-
+    //directs you to the highscore html page
     location.href = "./highscore.html";
 
 };
 
+//starts coutn down when page is loaded
 countdown();
+//fills the 1st question when page is loaded
 displayQuestion();
 
+//event listener stores which choice the user picks
 choice1.addEventListener('click', function() {
     userans = choice1.value
+    //checks if answer is correct
     checkAns();
+    //adds 1 to question number
     questNum++
+    //displays next question with the updated question number or end the quiz after the 5th question
     if(questNum < 5) {
         displayQuestion();
     } else {
         stopQuiz();
     }
 });
+
 choice2.addEventListener('click', function() {
     userans = choice2.value
     checkAns();
@@ -115,6 +134,7 @@ choice2.addEventListener('click', function() {
         stopQuiz();
     }
 });
+
 choice3.addEventListener('click', function() {
     userans = choice3.value
     checkAns();
@@ -125,6 +145,7 @@ choice3.addEventListener('click', function() {
         stopQuiz();
     }
 });
+
 choice4.addEventListener('click', function() {
     userans = choice4.value
     checkAns();

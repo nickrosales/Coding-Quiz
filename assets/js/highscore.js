@@ -1,6 +1,7 @@
 let scoreList = document.getElementById("scores");
 let inList = document.getElementById("initials");
 
+//pull data from loacal storage and displays it on the highscore html
 function highscore () {
 
     scoreList.textContent = ""
