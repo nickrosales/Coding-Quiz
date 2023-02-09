@@ -11,31 +11,31 @@ let highscoreArr = []
 let highscore = JSON.parse(localStorage.getItem('highscoreArr'));
 let questions = [
     {
-        question: "sdfgsdfg",
-        choices: ["a", "b", "c", "d"], 
+        question: "Whats the proper way to create a varible in javascript?",
+        choices: ["name = 'Josh", "var name = 'Josh'", "createvar name = 'Josh", "'Josh' = name"], 
         answer: 2
     },
     {
-        question: "dfgsdfgsdfg",
-        choices: ["a", "b", "c", "d"],
+        question: "What does the term 'API' stand for",
+        choices: ["Application Performace Interface", "Application Problem Interface", "Apreciation Prose Interjection", "Application Programming Interface"],
         answer: 4
         
     },
     {
-        question: "sdfgsdfgsdfg",
-        choices: ["a", "b", "c", "d"],
+        question: "What is used used to store multiple values in a single variable?",
+        choices: ["Variable", "Array", "Boolean", "Function"],
         answer: 2
         
     },
     {
-        question: "ssssss",
-        choices: ["a", "b", "c", "d"],
+        question: "What is a collection of properties that are assigined a key and a value?",
+        choices: ["Array", "Variable", "Object", "Integer"],
         answer: 3
         
     },
     {
-        question: "qqqqq",
-        choices: ["a", "b", "c", "d"],
+        question: "Which of the following allows the user to type in their own custom answer?",
+        choices: ["prompt", "alert", "confirm", "None of the above"],
         answer: 1
         
     },
@@ -135,5 +135,3 @@ choice4.addEventListener('click', function() {
         stopQuiz();
     }
 });
-
-
