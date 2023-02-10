@@ -76,13 +76,18 @@ function countdown () {
             clearInterval(timeInterval);
             timeLeft = 0
             timer.textContent = `Time: ${timeLeft}`
-            stopQuiz()
+            if(questNum != 5){
+                stopQuiz()
+        }
         }
     },1000);
 };
 
 //stops the quiz and asks the user to enter initials and show them their score
 function stopQuiz() {
+    if(timeLeft < 0){
+        timeLeft = 0
+    }
     let score = timeLeft
     let initials = prompt(`Your score was ${timeLeft}! Please enter your initials.`)
     //stores users score and initals in object
